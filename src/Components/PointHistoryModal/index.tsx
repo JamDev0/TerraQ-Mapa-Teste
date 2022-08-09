@@ -82,9 +82,6 @@ export function PointHistoryModal() {
                 : <span>loading...</span>
               }
             </DialogContentContainer>
-        : <span>loading...</span>
-      
-
       <DialogContentBackdrop />
     </Dialog>
   )
