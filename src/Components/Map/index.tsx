@@ -2,6 +2,7 @@ import { icon } from 'leaflet'
 import { useEffect, useState } from 'react'
 import parse from 'html-react-parser'
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import { useMapTile } from '../../hooks/useMapTile'
 
 interface mapInitialConfigs {
   center: { 
@@ -31,10 +32,23 @@ interface pointFromApi {
   }
 }
 
+interface tileFromApi {
+  name: string
+  url: string
+  attribution: string
+  maxZoom: number
+}
+
 export function Map() {
   const [mapInitialConfigs, setMapInitialConfigs] = useState<mapInitialConfigs | null>(null)
 
   const [points, setPoints] = useState<pointFromApi[]>([])
+  
+  const [mapTiles, setMapTiles] = useState<tileFromApi[]>([])
+  
+  const { tileName } = useMapTile()
+
+  const currentMapTile = mapTiles.find((mapTile) => mapTile.name === tileName)
 
   useEffect(() => {
     fetch('https://terraq.com.br/api/teste-leaflet/visao-inicial', {
@@ -43,6 +57,7 @@ export function Map() {
     .then((res) => res.json())
     .then((data) => {
       setMapInitialConfigs({...data.initial_view})
+      setMapTiles([...data.tile_layers])
     })
 
     fetch('https://terraq.com.br/api/teste-leaflet/pontos')
@@ -70,10 +85,19 @@ export function Map() {
             ]} 
             zoom={mapInitialConfigs.zoom} 
           >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
+            {
+              currentMapTile
+              ? <TileLayer
+                  attribution={currentMapTile.attribution}
+                  url={currentMapTile.url}
+                  maxZoom={currentMapTile.maxZoom}
+                />
+              : <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  maxZoom={19}
+                />
+            }
             {
               points
               ? points.map((point) => {
