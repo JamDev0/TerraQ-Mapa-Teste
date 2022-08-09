@@ -10,9 +10,9 @@ export const PopoverContainer = styled(Popover)`
 `
 
 export const PopoverButton = styled(Popover.Button)`
-  background-color: #38ed77;
+  background-color: #F4F4F4;
 
-  border: 2px solid black;
+  border: 2px solid rgba(0,0,0,0.2);
   border-radius: 3px;
 
   color: black;
@@ -35,11 +35,13 @@ export const PopoverPanel = styled(Popover.Panel)`
 
   position: absolute;
 
+  border: 2px solid rgba(0,0,0,0.2);
+
   width: fit-content;
 
   padding: 5px 10px;
 
-  background-color: #b8d1f2;
+  background-color: #F4F4F4;
 `
 
 export const Option = styled.span`
