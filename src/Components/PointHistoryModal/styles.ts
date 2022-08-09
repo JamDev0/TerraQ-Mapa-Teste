@@ -31,7 +31,7 @@ export const TableWrapper = styled.div`
   margin-inline: auto;
 
   width: fit-content;
-  max-height: 500px;
+  max-height: 60vh;
 `
 
 export const Title = styled.h2`
