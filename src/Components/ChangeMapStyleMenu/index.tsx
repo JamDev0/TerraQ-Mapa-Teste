@@ -1,34 +1,29 @@
-import { Menu } from '@headlessui/react'
 import { useMapTile } from '../../hooks/useMapTile'
-import { MenuButton, MenuItem, MenuItems } from './styles'
+import { Option, PopoverButton, PopoverContainer, PopoverPanel } from './styles'
 
 export function ChangeMapStyleMenu() {
   const { setTileName } = useMapTile()
 
   return(
-    <Menu>
-      <MenuButton>Mudar mapa</MenuButton>
-      <MenuItems>
-          <MenuItem>
-            <span
-              onClick={() => {
-                setTileName('Mapa Base 1 - OpenStreetMap')
-              }}
-            >
-              Mapa 1
-            </span>
-          </MenuItem>
+    <PopoverContainer>
+      <PopoverButton>Mudar mapa</PopoverButton>
+      <PopoverPanel>
+        <Option
+          onClick={() => {
+            setTileName('Mapa Base 1 - OpenStreetMap')
+          }}
+        >
+          Mapa 1
+        </Option>
 
-          <MenuItem>
-            <span
-              onClick={() => {
-                setTileName('Mapa Base 2 - Satélite')
-              }}
-            >
-              Mapa 2
-            </span>
-          </MenuItem>
-      </MenuItems>
-    </Menu>
+        <Option
+          onClick={() => {
+            setTileName('Mapa Base 2 - Satélite')
+          }}
+        >
+          Mapa 2
+        </Option>
+      </PopoverPanel>
+    </PopoverContainer>
   )
 }

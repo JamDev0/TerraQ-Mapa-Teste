@@ -1,8 +1,16 @@
+import { Popover } from '@headlessui/react';
 import styled from "styled-components";
 
 import { Menu } from '@headlessui/react'
 
-export const MenuButton = styled(Menu.Button)`
+export const PopoverContainer = styled(Popover)`
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  z-index: 1000;
+`
+
+export const PopoverButton = styled(Popover.Button)`
   background-color: #38ed77;
 
   border: 2px solid black;
@@ -17,7 +25,9 @@ export const MenuButton = styled(Menu.Button)`
   cursor: pointer;
 `
 
-export const MenuItems = styled(Menu.Items)`
+export const PopoverPanel = styled(Popover.Panel)`
+  position: absolute;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,7 +43,7 @@ export const MenuItems = styled(Menu.Items)`
   background-color: #b8d1f2;
 `
 
-export const MenuItem = styled(Menu.Item)`
+export const Option = styled.span`
   border: 1.5px solid #3d3e3f;
   border-radius: 2px;
 
