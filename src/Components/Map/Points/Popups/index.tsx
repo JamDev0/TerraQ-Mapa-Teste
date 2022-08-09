@@ -1,7 +1,11 @@
 import { Popup } from "react-leaflet";
-import { pointFromApi } from "../..";
-import parse from 'html-react-parser'
+
+import parse from 'html-react-parser';
+
 import { ApiPopupContentContainer, ListOfData, OpenHistory, PopupContainer, Title } from "./styles";
+
+import { pointFromApi } from "../..";
+
 import { usePointHistory } from "../../../../hooks/usePointHistory";
 
 interface PopuspProps {
@@ -19,7 +23,7 @@ export function Popups({ point }: PopuspProps) {
       </Title>
       <ApiPopupContentContainer>
         {
-            parse(point.properties.popupContent)
+            parse(point.properties.popupContent) // Transformação de string para elemento react
         }
       </ApiPopupContentContainer>
       <ListOfData>
@@ -57,7 +61,7 @@ export function Popups({ point }: PopuspProps) {
 
       <OpenHistory
         onClick={() => {
-          setPointId(point.properties.id)
+          setPointId(point.properties.id) // Definição do estado ao clicar
         }}
       >
         Abrir histórico

@@ -1,7 +1,10 @@
 import { icon } from "leaflet"
-import { Marker, Popup } from "react-leaflet"
-import { pointFromApi } from ".."
+
+import { Marker } from "react-leaflet"
+
 import { Popups } from "./Popups"
+
+import { pointFromApi } from ".."
 
 interface PointsProps {
     points: pointFromApi[]

@@ -1,4 +1,5 @@
 import { useMapTile } from '../../hooks/useMapTile'
+
 import { Option, PopoverButton, PopoverContainer, PopoverPanel } from './styles'
 
 export function ChangeMapStyleMenu() {
@@ -10,7 +11,7 @@ export function ChangeMapStyleMenu() {
       <PopoverPanel>
         <Option
           onClick={() => {
-            setTileName('Mapa Base 1 - OpenStreetMap')
+            setTileName('Mapa Base 1 - OpenStreetMap') // Mudança do estado ao clicar no item
           }}
         >
           Mapa 1
@@ -18,7 +19,7 @@ export function ChangeMapStyleMenu() {
 
         <Option
           onClick={() => {
-            setTileName('Mapa Base 2 - Satélite')
+            setTileName('Mapa Base 2 - Satélite') // Mudança do estado ao clicar no item
           }}
         >
           Mapa 2

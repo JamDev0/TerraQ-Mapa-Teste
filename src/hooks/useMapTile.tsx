@@ -14,7 +14,7 @@ interface MapTileProviderProps {
 const mapTileContext = createContext<mapTileContext>({} as mapTileContext)
 
 export function MapTileProvider({ children }: MapTileProviderProps) {
-  const [tileName, setTileName] = useState<tileName | null>(null)
+  const [tileName, setTileName] = useState<tileName | null>(null) // Definição do estado responsável por definir qual sera o mapa a ser utilizado
 
   return(
     <mapTileContext.Provider value={{ setTileName, tileName }}>

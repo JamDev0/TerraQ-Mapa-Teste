@@ -1,7 +1,6 @@
 import { Popover } from '@headlessui/react';
-import styled from "styled-components";
 
-import { Menu } from '@headlessui/react'
+import styled from "styled-components";
 
 export const PopoverContainer = styled(Popover)`
   position: absolute;

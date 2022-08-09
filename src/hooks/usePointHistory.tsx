@@ -12,7 +12,7 @@ interface PointHistoryProviderProps {
 const pointHistoryContext = createContext<pointHistoryContext>({} as pointHistoryContext)
 
 export function PointHistoryProvider({ children }: PointHistoryProviderProps) {
-    const [pointId, setPointId] = useState<number | null>(null)
+    const [pointId, setPointId] = useState<number | null>(null) // Definição do estado responsável por dizer se o modal de histórico devera ser aberto e quais informações ele devera mostrar
 
     return(
         <pointHistoryContext.Provider value={{ pointId, setPointId }}>

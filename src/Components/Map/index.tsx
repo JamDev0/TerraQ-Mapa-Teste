@@ -1,11 +1,13 @@
-import { icon } from 'leaflet'
 import { useEffect, useState } from 'react'
 
-import { Marker, Popup, TileLayer } from 'react-leaflet'
-import { useMapTile } from '../../hooks/useMapTile'
-import { Points } from './Points'
 import { MapContainerStyled, MapWrapperContainer } from './styles'
+
+import { useMapTile } from '../../hooks/useMapTile'
+
+import { Points } from './Points'
+
 import { TileLayerElement } from './TileLayerElement'
+
 
 interface mapInitialConfigs {
   center: { 
@@ -43,15 +45,15 @@ export interface tileFromApi {
 }
 
 export function Map() {
-  const [mapInitialConfigs, setMapInitialConfigs] = useState<mapInitialConfigs | null>(null)
+  const [mapInitialConfigs, setMapInitialConfigs] = useState<mapInitialConfigs | null>(null) // Definição de um estado para o armazenamento das configurações iniciais do mapa
 
-  const [points, setPoints] = useState<pointFromApi[]>([])
+  const [points, setPoints] = useState<pointFromApi[]>([]) // Definição de um estado responsável por armazenas todos os pontos e seus dados
   
-  const [mapTiles, setMapTiles] = useState<tileFromApi[]>([])
+  const [mapTiles, setMapTiles] = useState<tileFromApi[]>([]) // Definição de um estado que ira armazenar os possíveis tiles do map
   
   const { tileName } = useMapTile()
 
-  const currentMapTile = mapTiles.find((mapTile) => mapTile.name === tileName)
+  const currentMapTile = mapTiles.find((mapTile) => mapTile.name === tileName) // Procura por meio do nome do estilo de mapa selecionado
 
   useEffect(() => {
     fetch('https://terraq.com.br/api/teste-leaflet/visao-inicial', {
@@ -59,14 +61,14 @@ export function Map() {
     })
     .then((res) => res.json())
     .then((data) => {
-      setMapInitialConfigs({...data.initial_view})
-      setMapTiles([...data.tile_layers])
+      setMapInitialConfigs({...data.initial_view}) // Definição dos valores retornados pela api como valor do estado
+      setMapTiles([...data.tile_layers]) // Definição dos valores retornados pela api como valor do estado
     })
 
     fetch('https://terraq.com.br/api/teste-leaflet/pontos')
     .then((res) => res.json())
     .then((data) => {
-      setPoints(data)
+      setPoints(data) // Definição dos valores retornados pela api como valor do estado
     })
   }, [])
 

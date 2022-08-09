@@ -1,5 +1,7 @@
 import { Popover } from "@headlessui/react";
+
 import { useEffect, useState } from "react";
+
 import { PopoverButton, PopoverContainer, PopoverPanel, UserDataContainer } from "./styles";
 
 interface userData {
@@ -13,13 +15,13 @@ interface userData {
 }
 
 export function UserMenu() {
-  const [userData, setUserData] = useState<userData | null>(null)
+  const [userData, setUserData] = useState<userData | null>(null) // Estado responsável por armazenar as informações do usuário atual
 
   useEffect(() => {
     fetch('https://terraq.com.br/api/teste-leaflet/user')
     .then((res) => res.json())
     .then((data) => {
-      setUserData(data)
+      setUserData(data) // Definição dos valores retornados pela api como valor do estado
     })
   }, [])
 

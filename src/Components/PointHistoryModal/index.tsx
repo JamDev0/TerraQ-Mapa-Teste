@@ -1,7 +1,10 @@
 import { Dialog } from "@headlessui/react";
+
 import { useEffect, useState } from "react";
-import { usePointHistory } from "../../hooks/usePointHistory";
+
 import { DataTable, DialogContentBackdrop, DialogContentContainer, TableWrapper, Title, XBtn } from "./styles";
+
+import { usePointHistory } from "../../hooks/usePointHistory";
 
 interface datas {
     data: string
@@ -15,7 +18,7 @@ interface datas {
 export function PointHistoryModal() {
   const { pointId, setPointId } = usePointHistory()
 
-  const [datas, setDatas] = useState<datas[]>([])
+  const [datas, setDatas] = useState<datas[]>([]) // Definição de um estado que armazenar todas as informações sobre o histórico do ponto atual
 
   function isModalOpen() {
     return pointId !== null
@@ -25,7 +28,7 @@ export function PointHistoryModal() {
     if(pointId) {
       fetch(`https://terraq.com.br/api/teste-leaflet/ponto/${pointId}`)
       .then((res) => res.json())
-      .then((d) => setDatas(d))
+      .then((d) => setDatas(d)) // Definição dos valores retornados pela api como valor do estado
     }
   }, [pointId])
 
@@ -35,8 +38,8 @@ export function PointHistoryModal() {
         <DialogContentContainer >
               <XBtn
                 onClick={() => {
-                  setPointId(null)
-                  setDatas([])
+                  setPointId(null) // Definição do estado como nulo
+                  setDatas([]) // Reinicialização do estado
                 }}
               >
                 X
@@ -54,7 +57,7 @@ export function PointHistoryModal() {
                           <th>datas</th>
                           <th>temperatura</th>
                           <th>umidade</th>
-                          <th>preciptação</th>
+                          <th>precipitação</th>
                           <th>visibilidade</th>
                           <th>vento</th>
                         </tr>
