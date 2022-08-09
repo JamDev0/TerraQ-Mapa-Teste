@@ -24,8 +24,9 @@ export function PointHistoryModal() {
     return pointId !== null
   }
 
+
   useEffect(() => {
-    if(pointId) {
+    if(pointId !== null) {
       fetch(`https://terraq.com.br/api/teste-leaflet/ponto/${pointId}`)
       .then((res) => res.json())
       .then((d) => setDatas(d)) // Definição dos valores retornados pela api como valor do estado
