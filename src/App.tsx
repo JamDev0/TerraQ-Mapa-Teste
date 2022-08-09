@@ -1,6 +1,6 @@
 import { icon } from 'leaflet'
 import { useEffect, useState } from 'react'
-
+import parse from 'html-react-parser'
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 
 interface mapInitialConfigs {
@@ -22,7 +22,7 @@ interface pointFromApi {
   icon: string
   id: number
   name: string
-  popupContent: HTMLElement
+  popupContent: string
   precipitacao: number
   temperatura: number
   umidade: number
@@ -89,9 +89,49 @@ export function App() {
                       iconSize: [32, 32],
 
                       iconAnchor:   [16, 32],
-                      popupAnchor:  [16, 0],
+                      popupAnchor:  [0, -32],
                     })}
                   >
+                    <Popup>
+                      <p>
+                        {point.geometry.type}
+                      </p>
+                      {
+                        parse(point.properties.popupContent)
+                      }
+                      <ul>
+                        <li>
+                          Preciptação:
+                          {
+                            point.properties.precipitacao
+                          }
+                        </li>
+                        <li>
+                          Temperatura:
+                          {
+                            point.properties.temperatura
+                          }
+                        </li>
+                        <li>
+                          Umidade:
+                          {
+                            point.properties.umidade
+                          }
+                        </li>
+                        <li>
+                          Vento:
+                          {
+                            point.properties.vento
+                          }
+                        </li>
+                        <li>
+                          Visibilidade:
+                          {
+                            point.properties.visibilidade
+                          }
+                        </li>
+                      </ul>
+                    </Popup>
                   </Marker>
                 )
               })
