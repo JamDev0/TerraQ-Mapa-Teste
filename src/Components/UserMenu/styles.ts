@@ -16,9 +16,11 @@ export const PopoverButton = styled(Popover.Button)`
 
     width: fit-content;
 
-    background-color: #e02a2a;
+    background-color: #F4F4F4;
 
-    color: aliceblue;
+    border: 1.8px solid #e02a2a;
+
+    color: #e02a2a;
     font-weight: 700;
     font-size: 2rem;
 
